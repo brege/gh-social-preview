@@ -13,7 +13,7 @@ cli_help: >
     oshea convert gh-social-preview-example.md --plugin gh-social-preview
 ---
 
-# GitHub Social Preview Plugin (`gh-social-preview`)
+# GitHub Social Preview Plugin
 
 This plugin generates a clean social preview card displaying "wyatt brege"
 centered on a ribbon background in a monospace font. The ribbon background
@@ -68,4 +68,4 @@ This is the banner image in [brege/brege/README.md](https://github.com/brege/bre
 ## Requirements
 
 - [**oshea**](https://github.com/brege/oshea): Markdown to PDF converter
-- **ImageMagick**: Required *if* also generating the GitHub profile banner
+- [**ImageMagick**](https://imagemagick.org/): Required *if* also generating the GitHub profile banner
