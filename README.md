@@ -52,6 +52,8 @@ oshea convert gh-social-preview/gh-social-preview-example.md --filename card.pdf
 
 This generates a PDF card with dimensions 1200x630px using the blue and green color palette.
 
+<img src="img/card.png" width="100%" height="100%">
+
 ### Generate the GitHub profile banner
 
 After generating the card, convert it to PNG and extract the center 30%:
@@ -60,6 +62,8 @@ After generating the card, convert it to PNG and extract the center 30%:
 magick card.pdf -gravity center -crop 100%x30%+0+0 +repage banner.png
 ```
 This is the banner image in [brege/brege/README.md](https://github.com/brege/brege/blob/main/README.md).
+
+<img src="img/banner.png" width="100%" height="100%">
 
 ## Requirements
 
