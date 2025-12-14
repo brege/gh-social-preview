@@ -13,11 +13,15 @@ cli_help: >
     oshea convert gh-social-preview-example.md --plugin gh-social-preview
 ---
 
+<img src="img/ribbon.png" width="100%" height="100%">
+
 # GitHub Social Preview Plugin
 
-This plugin generates a clean social preview card displaying "wyatt brege"
+This 
+[**oshea**](https://github.com/brege/oshea)
+plugin generates a clean social preview card displaying "wyatt brege"
 centered on a ribbon background in a monospace font. The ribbon background
-is generated from aperiodic tiling following the
+is generated from aperiodic tilings following the
 [silver ratio](https://en.wikipedia.org/wiki/Silver_ratio)
 in the blue-green spectrum of the
 [gruvbox](https://github.com/morhetz/gruvbox)
