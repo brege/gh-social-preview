@@ -1,0 +1,62 @@
+// plugins/gh-social-preview/.contract/test/gh-social-preview-e2e.test.js
+require('module-alias/register');
+const path = require('path');
+const os = require('os');
+const { expect } = require('chai');
+const {
+  projectRoot,
+  cliPath,
+  testFileHelpersPath,
+  loggerPath,
+} = require('@paths');
+
+const logger = require(loggerPath);
+
+const {
+  runCliCommand,
+  setupTestDirectory,
+  cleanupTestDirectory,
+  checkFile,
+} = require(testFileHelpersPath);
+
+const PLUGIN_ROOT = path.resolve(__dirname, '../../'); // lint-skip-line no-relative-paths
+const PLUGIN_NAME = path.basename(PLUGIN_ROOT);
+const TEST_OUTPUT_DIR = path.join(os.tmpdir(), 'oshea-test-output', `${PLUGIN_NAME}-plugin-e2e`);
+const EXAMPLE_MD = path.join(PLUGIN_ROOT, `${PLUGIN_NAME}-example.md`);
+const EXPECTED_PDF_BASENAME = 'dr-eleanor-vance.pdf';
+const MIN_PDF_SIZE = 1000;
+
+describe('plugins/gh-social-preview (in-situ Self-Activation Test) .contract/test/gh-social-preview-e2e.test.js', function() {
+  this.timeout(20000);
+
+  before(async () => {
+    await setupTestDirectory(TEST_OUTPUT_DIR);
+  });
+
+  after(async () => {
+    await cleanupTestDirectory(TEST_OUTPUT_DIR);
+  });
+
+  it('in-situ: should successfully convert its own example markdown file', async () => {
+    const commandArgs = [
+      'convert',
+      EXAMPLE_MD,
+      '--outdir',
+      TEST_OUTPUT_DIR,
+      '--filename',
+      EXPECTED_PDF_BASENAME,
+      '--no-open',
+    ];
+
+    const result = await runCliCommand(commandArgs, cliPath, projectRoot);
+
+    if (!result.success) {
+      const errorMessage = result.stderr || (result.error ? result.error.message : 'Unknown error');
+      logger.error('CLI command failed', { context: `${PLUGIN_NAME}-e2e`, error: errorMessage });
+      throw new Error(`CLI command failed for ${PLUGIN_NAME}:\n${errorMessage}`);
+    }
+
+    expect(result.success, 'CLI command should succeed').to.be.true;
+    await checkFile(TEST_OUTPUT_DIR, EXPECTED_PDF_BASENAME, MIN_PDF_SIZE);
+  });
+});

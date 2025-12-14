@@ -1,0 +1,21 @@
+plugin_name: gh-social-preview
+version: 1.0.0
+protocol: v1
+description: GitHub social preview card with centered text
+handler_script: index.js
+css_files:
+  - gh-social-preview.css
+schema_file: .contract/gh-social-preview.schema.json
+pdf_options:
+  width: 1200px
+  height: 630px
+  margin:
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+  printBackground: true
+inject_fm_title_as_h1: false
+aggressiveHeadingCleanup: false
+math:
+  enabled: false
